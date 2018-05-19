@@ -1,6 +1,7 @@
 package com.example.demo.interceptor;
 
 import com.example.demo.utils.NetworkUtil;
+import com.example.demo.utils.region.IpRegionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -37,15 +38,11 @@ public class MyInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("访问人IP："+ NetworkUtil.getIpAddress(request));
+        String ipAddress = NetworkUtil.getIpAddress(request);
+        logger.info("访问人IP："+ ipAddress);
         String servletPath = request.getServletPath();
         String[] split = path.split(",");
         int size = Arrays.stream(split).filter(url -> url.equals(servletPath)).collect(Collectors.toList()).size();
-        /*if (size <= 0){
-            logger.error("当前路径无法访问");
-            return false;
-        }*/
-        //
         return true;
     }
 
@@ -55,6 +52,6 @@ public class MyInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println(handler);
+
     }
 }

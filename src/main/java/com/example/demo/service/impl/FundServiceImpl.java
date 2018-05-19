@@ -23,9 +23,6 @@ public class FundServiceImpl implements FundService {
     @Override
     public List<TblFund> getFund() {
         TblFundExample tblFundExample = new TblFundExample();
-        if (true) {
-            throw new RuntimeException("错误");
-        }
         return tblFundMapper.selectByExample(tblFundExample);
     }
 }
