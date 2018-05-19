@@ -31,13 +31,8 @@ public class IpRegionUtil {
 
     public static String getIpRegion(String ip){
         String region = "";
-        String host = "http://iploc.market.alicloudapi.com";
-        String path = "/v3/ip";
-        String method = "GET";
-        String appcode = "0a4510c9650f465a984683c3a162203e";//"你自己的AppCode";
         Map<String, String> headers = new HashMap<String, String>();
-        //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
-        headers.put("Authorization", "APPCODE " + appcode);
+        headers.put("Authorization", "APPCODE " + appCode);
         Map<String, String> querys = new HashMap<String, String>();
         querys.put("ip",ip);
         JSONObject jsonObject = null;
@@ -48,7 +43,6 @@ public class IpRegionUtil {
         try {
             HttpResponse httpResponse = HttpUtils.doGet(host, path, method, headers, querys);
             jsonObject = JSONObject.fromObject( EntityUtils.toString(httpResponse.getEntity(),"UTF-8"));
-            System.out.println(jsonObject.toString());
             if (!jsonObject.containsKey("province")){
                 return "";
             }

@@ -51,7 +51,6 @@ public class HttpUtils {
     	HttpClient httpClient = wrapClient(host);
 
     	HttpGet request = new HttpGet(buildUrl(host, path, querys));
-		System.out.println(request.getURI());
 		for (Map.Entry<String, String> e : headers.entrySet()) {
         	request.addHeader(e.getKey(), e.getValue());
         }
