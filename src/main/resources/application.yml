@@ -6,6 +6,17 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 30000
+    password:
+    jedis:
+      pool:
+        max-idle: 6
+        max-wait: 5000
+        max-active: -1
+        min-idle: 3
 #加入dao，mapper 扫描
 mybatis:
   typeAliasesPackage: com.example.demo.modular.entity

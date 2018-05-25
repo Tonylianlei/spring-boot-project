@@ -26,10 +26,10 @@ public class MyInterceptor implements HandlerInterceptor {
 
     private static Properties properties = null;
     private static String path = null;
-    {
+    static {
         properties = new Properties();
         try {
-            properties.load(getClass().getClassLoader().getResourceAsStream("whiteList.properties"));
+            properties.load(MyInterceptor.class.getClassLoader().getResourceAsStream("whiteList.properties"));
             path = properties.getProperty("path");
         } catch (IOException e) {
             e.printStackTrace();
